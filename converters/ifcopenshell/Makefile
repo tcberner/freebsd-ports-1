@@ -1,0 +1,58 @@
+# $FreeBSD$
+
+PORTNAME=	ifcopenshell
+DISTVERSIONPREFIX=	v
+DISTVERSION=	0.6.0
+DISTVERSIONSUFFIX=	b0
+CATEGORIES=	converters
+
+MAINTAINER=	lbartoletti@tuxfamily.org
+COMMENT=	Open source ifc toolkit and geometry engine
+
+LICENSE=	LGPL3
+LICENSE_FILE=	${WRKSRC}/COPYING
+
+LIB_DEPENDS=	libTKernel.so:cad/opencascade \
+		libboost_thread.so:devel/boost-libs \
+		libpcre.so:devel/pcre
+
+USES=		cmake gnome
+USE_GNOME=	libxml2
+USE_LDCONFIG=	yes
+
+SLAVEDIRS=	converters/py-ifcopenshell
+
+USE_GITHUB=	yes
+GH_PROJECT=	IfcOpenShell
+
+CMAKE_SOURCE_PATH=	${WRKSRC}/cmake
+CMAKE_ON=	BUILD_SHARED_LIBS ENABLE_BUILD_OPTIMIZATIONS IFCXML_SUPPORT
+CMAKE_OFF=	BUILD_EXAMPLES BUILD_IFCMAX COLLADA_SUPPORT
+CMAKE_ARGS=	-DOCC_INCLUDE_DIR=${LOCALBASE}/include/OpenCASCADE \
+		-DOCC_LIBRARY_DIR=${LOCALBASE}/lib \
+		-DLIBXML2_INCLUDE_DIR=${LOCALBASE}/include/libxml2 \
+		-DLIBXML2_LIBRARIES=${LOCALBASE}/lib/libxml2.so
+
+OPTIONS_DEFINE=		GLTF PYTHON
+# OpenCollada support build only on 12 amd64 for now
+#OPENCOLLADA_DESC=	Enable OpenCOLLADA support
+GLTF_DESC=		Enable gLTF support
+#OPTIONS_DEFAULT=	PYTHON GLTF
+
+OPTIONS_SUB=		yes
+
+#OPENCOLLADA_LIB_DEPENDS=	libGeneratedSaxParser.so:graphics/opencollada
+#OPENCOLLADA_CMAKE_ON=	-DCOLLADA_SUPPORT:BOOL=true \
+#			-DOPENCOLLADA_INCLUDE_DIR=${LOCALBASE}/include/opencollada \
+#			-DOPENCOLLADA_LIBRARY_DIR=${LOCALBASE}/lib/opencollada
+#OPENCOLLADA_CMAKE_OFF=	-DCOLLADA_SUPPORT:BOOL=false
+
+GLTF_BUILD_DEPENDS=	nlohmann-json>0:devel/nlohmann-json
+GLTF_CMAKE_ON=		-DGLTF_SUPPORT:BOOL=true -DJSON_INCLUDE_DIR=${LOCALBASE}/include
+GLTF_CMAKE_OFF=		-DGLTF_SUPPORT:BOOL=false
+
+PYTHON_BUILD_DEPENDS=	swig3.0:devel/swig30
+PYTHON_USES=		python
+PYTHON_CMAKE_ON=	-DBUILD_IFCPYTHON:BOOL=true
+PYTHON_CMAKE_OFF=	-DBUILD_IFCPYTHON:BOOL=false
+.include <bsd.port.mk>
