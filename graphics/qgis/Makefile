@@ -151,6 +151,11 @@ post-patch:
 .if ${OPSYS} == FreeBSD && ${ARCH} == "i386"
 	@${REINPLACE_CMD} -e 's|"-mllvm -inline-threshold=128"|"-O1"|g' \
 		${WRKSRC}/src/core/CMakeLists.txt
+# Build failure with txt2tags > 3 (dropped --css-sugar & --css-inside)
+# https://github.com/qgis/QGIS/issues/33516
+.for f in INSTALL news
+	@${REINPLACE_CMD} -e 's|--css-sugar --css-inside||' ${WRKSRC}/doc/${f}.t2t
+.endfor
 .endif
 
 pre-configure:
