@@ -4,7 +4,7 @@
 PORTNAME=	qgis
 DISTVERSIONPREFIX=	final-
 DISTVERSION=	3_4_11
-PORTREVISION=	2
+PORTREVISION=	3
 CATEGORIES=	graphics geography
 PKGNAMESUFFIX=	-ltr
 
@@ -151,7 +151,7 @@ post-patch:
 # Build failure with txt2tags > 3 (dropped --css-sugar & --css-inside)
 # https://github.com/qgis/QGIS/issues/33516
 .for f in INSTALL news
-        @${REINPLACE_CMD} -e 's|--css-sugar --css-inside||' ${WRKSRC}/doc/${f}.t2t
+	@${REINPLACE_CMD} -e 's|--css-sugar --css-inside||' ${WRKSRC}/doc/${f}.t2t
 .endfor
 
 pre-configure:
