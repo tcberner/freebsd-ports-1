@@ -1,9 +1,9 @@
 # Created by: Mikael URANKAR and Loïc BARTOLETTI
-# $FreeBSD$
+# $FreeBSD: head/databases/grass7/Makefile 523793 2020-01-22 06:02:24Z sunpoet $
 
 PORTNAME=	grass
 PORTVERSION=	7.6.1
-PORTREVISION=	9
+PORTREVISION=	10
 CATEGORIES=	databases geography
 MASTER_SITES=	https://grass.osgeo.org/%SUBDIR%/ \
 		http://grass.cict.fr/%SUBDIR%/ \
@@ -168,7 +168,7 @@ post-patch:
 
 post-install:
 	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/demolocation/PERMANENT/.tmp/
-	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/docs/html/colortables/*bak.png
+	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/docs/html/colortables/*bak
 	${MKDIR} ${STAGEDIR}${LOCALBASE}/${PORTNAME}${VER}/docs/html/
 .for file in i_atcorr_B02_atcorr.png \
 		i_ortho_photo_step1.png \
@@ -190,10 +190,8 @@ post-install:
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/${i}
 .endfor
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/lister/*
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/lib/libgrass_*.so
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/lib/libgrass_*.so*
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/tools/g.echo
 	${LN} -sf ${PORTNAME}${VER} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}${PKGNAMESUFFIX}
-	${LN} -s ${PORTNAME}${VER} \
-		${STAGEDIR}${PREFIX}/${PORTNAME}-${PORTVERSION}
 .include <bsd.port.mk>
