@@ -7,7 +7,7 @@ PORTREVISION=	9
 CATEGORIES=	x11-toolkits
 PKGNAMESUFFIX=	30-gtk3
 
-MAINTAINER=	lbartoletti@tuxfamily.org
+MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	The wxWidgets GUI toolkit with GTK+ bindings
 
 LICENSE=	GPLv2+
