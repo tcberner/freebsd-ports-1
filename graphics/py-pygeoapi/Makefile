@@ -1,5 +1,5 @@
 PORTNAME=	pygeoapi
-PORTVERSION=		0.9.0
+PORTVERSION=		0.10.1
 CATEGORIES=	graphics geography python
 MASTER_SITES=	CHEESESHOP
 PKGNAMEPREFIX=	${PYTHON_PKGNAMEPREFIX}
@@ -18,7 +18,8 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}click>0:devel/py-click@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pytz>0:devel/py-pytz@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}dateutil>0:devel/py-dateutil@${PY_FLAVOR} \
 		${PYTHON_PKGNAMEPREFIX}pyproj>0:graphics/py-pyproj@${PY_FLAVOR} \
-		${PYTHON_PKGNAMEPREFIX}rasterio>0:graphics/py-rasterio@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}rasterio>0:graphics/py-rasterio@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}Shapely>0:devel/py-shapely@${PY_FLAVOR}
 
 USES=		python:3.5+
 USE_PYTHON=	autoplist concurrent distutils
