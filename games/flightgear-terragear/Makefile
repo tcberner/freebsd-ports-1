@@ -6,6 +6,9 @@ CATEGORIES=	games
 MAINTAINER=	ports@FreeBSD.org
 COMMENT=	Tools for building scenery for the FlightGear project
 
+PATCH_SITES=	https://gitlab.com/${GH_ACCOUNT}/${GH_PROJECT}/-/commit/ 
+PATCHFILES+=	37ecd8aa2152.patch:-p1
+
 LICENSE=	GPLv2
 
 BUILD_DEPENDS=	cgal>0:math/cgal

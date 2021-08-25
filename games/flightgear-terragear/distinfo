@@ -1,3 +1,5 @@
-TIMESTAMP = 1510318229
+TIMESTAMP = 1629895776
 SHA256 (flightgear-terragear-20171007-5b5e5fc_GH0.tar.gz) = c590cc233238ce1a85e2270fdaa1eaef753ba5b481f602790b676afb932e6d7d
 SIZE (flightgear-terragear-20171007-5b5e5fc_GH0.tar.gz) = 2615341
+SHA256 (37ecd8aa2152.patch) = f408bed1909ce7d7bd21da226deadbfa8fb2e47f2bb69888e52d5f8ebce46956
+SIZE (37ecd8aa2152.patch) = 5325
