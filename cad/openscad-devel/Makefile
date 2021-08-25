@@ -6,8 +6,8 @@ PORTREVISION=	6
 CATEGORIES=	cad
 PKGNAMESUFFIX=	-devel
 
-#PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
-#PATCHFILES+=	b6c170cc5dd1.patch:-p1
+PATCH_SITES=	https://github.com/${GH_ACCOUNT}/${GH_PROJECT}/commit/
+PATCHFILES+=	cc49ad8dac24.patch:-p1
 
 MAINTAINER=	mr@FreeBSD.org
 COMMENT=	Programmer's solid 3D CAD modeller #'
