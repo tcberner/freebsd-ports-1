@@ -1,39 +1,23 @@
 # Created by: lbartoletti <lbartoletti@FreeBSD.org>
 
 PORTNAME=	minizip
-PORTVERSION=	1.2.11
+PORTVERSION=	3.0.3
 CATEGORIES=	archivers
-MASTER_SITES=	SF/libpng/zlib/${PORTVERSION}
-DISTNAME=	zlib-${PORTVERSION}
 
 MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Zip library and programs from Zlib distribution
 
 LICENSE=	ZLIB
+LICENSE_FILE=	${WRKSRC}/LICENSE
 
-USES=		autoreconf cpe libtool pathfix tar:xz
-USE_LDCONFIG=	yes
-GNU_CONFIGURE=	yes
-CONFIGURE_ARGS=	--enable-demos
-INSTALL_TARGET=	install-strip
-WRKSRC=		${WRKDIR}/zlib-${PORTVERSION}/contrib/minizip
-CPE_VENDOR=	minizip_project
+USES=		cmake:testing iconv ssl
+USE_GITHUB=	yes
+GH_ACCOUNT=	zlib-ng
+GH_PROJECT=	minizip-ng
 
-post-patch:
-	@${REINPLACE_CMD} 's/#ifdef unix || __APPLE__/#ifdef unix/' ${WRKSRC}/mini???.c
+CMAKE_ON=	BUILD_SHARED_LIBS \
+		MZ_BUILD_TESTS # build executable "tests": minizip/minigzip
 
-post-install:
-	${INSTALL_MAN} ${WRKSRC}/*.1 ${STAGEDIR}${PREFIX}/man/man1
-
-do-test:
-	${RM} -r ${WRKDIR}/regression-test1
-	${MKDIR} ${WRKDIR}/regression-test1
-	${MV} ${WRKSRC}/*.[cho] ${WRKDIR}/regression-test1
-	${RM} ${WRKDIR}/test.zip
-	(cd ${WRKDIR}/regression-test1 && ${WRKSRC}/minizip ${WRKDIR}/test.zip *)
-	${RM} -r ${WRKDIR}/regression-test2
-	${MKDIR} ${WRKDIR}/regression-test2
-	${WRKSRC}/miniunzip ${WRKDIR}/test.zip -d ${WRKDIR}/regression-test2
-	${DIFF} -ur ${WRKDIR}/regression-test1 ${WRKDIR}/regression-test2 > /dev/null
+CMAKE_ARGS=	-DINSTALL_INC_DIR=${PREFIX}/include/${PORTNAME}
 
 .include <bsd.port.mk>
