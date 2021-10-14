@@ -1,0 +1,8 @@
+psycopg3 is the new implementation of the most used, reliable and feature-rich
+PostgreSQL adapter for Python.
+
+psycopg3 is currently under active development: it started as a part-time
+project around mid 2020, and has become a full-time project in October of the
+same year.
+
+WWW: https://www.psycopg.org/psycopg3/
