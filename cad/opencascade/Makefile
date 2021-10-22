@@ -1,8 +1,7 @@
 # Created by: Thierry Thomas <thierry@pompo.net>
 
 PORTNAME=	opencascade
-PORTVERSION=	7.5.0
-PORTREVISION=	3
+PORTVERSION=	7.5.2
 CATEGORIES=	cad science
 MASTER_SITES=	LOCAL/thierry
 
@@ -96,6 +95,8 @@ DOXYGEN_BUILD_DEPENDS=	bash:shells/bash		\
 			pdftex:print/tex-basic-engines	\
 			inkscape:graphics/inkscape
 DOXYGEN_RUN_DEPENDS=	${LOCALBASE}/www/MathJax/MathJax.js:www/mathjax
+
+WRKSRC=	${WRKDIR}/occt-V${PORTVERSION:S/./_/g}
 
 .include <bsd.port.options.mk>
 
