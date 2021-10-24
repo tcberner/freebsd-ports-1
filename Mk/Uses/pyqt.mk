@@ -234,32 +234,32 @@ PORTSCOUT?=	limit:^${_QT_VERSION:R}
 .    endif
 
 PATCHDIR=	${.CURDIR}/../../devel/${PYQT_RELNAME}-core/files
-CONFIGURE_ARGS+=-b ${PREFIX}/bin \
-		-d ${PYTHONPREFIX_SITELIBDIR} \
-		-q ${QMAKE} \
-		--confirm-license \
-		--sip ${SIP} \
-		--sipdir ${PYQT_SIPDIR}
-.    if ${_PYQT_VERSION:M5}
-# Move the designer plugin and qml libraries to versioned folders.
-CONFIGURE_ARGS+=--qml-plugindir ${PYQT_QMLDIR} \
-		--designer-plugindir ${PYQT_DESIGNERDIR}
-# Further do not gernate the dinstinfo files.
-CONFIGURE_ARGS+=--no-dist-info
-.    endif
-# One of the things PyQt looks for to determine whether to build the Qt DBus
-# main loop module (${PYQT_RELNAME}-dbussupport) is whether the dbus/ directory is
-# present. Only extract it for that port then.
-.    if ${PORTNAME} != "dbussupport"
-EXTRACT_AFTER_ARGS+=	--exclude "${DISTNAME}/dbus"
-.    endif  # ${PORTNAME} != "dbussupport"
 
 .    if !target(do-configure)
 do-configure:
 	${REINPLACE_CMD} -e "s/sip-module/sip-module-${PYTHON_VER}/" ${WRKSRC}/configure.py
-	cd ${WRKSRC} && ${SETENV} ${CONFIGURE_ENV} \
-		${PYTHON_CMD} configure.py ${CONFIGURE_ARGS}
 .    endif  # !target(do-configure)
+
+.    if !target(do-build)
+do-build:
+	(cd ${WRKSRC} ; \
+	sip-build-${PYTHON_VER} \
+		--qmake ${QMAKE} \
+		--verbose \
+		--no-make \
+		--build-dir build \
+		--confirm-license \
+		--api-dir ${PYQT_APIDIR} \
+		${PYQT5_MODULES_ALL:N${PYQT_MODULE}:C/.*/--disable &/} \
+		--enable ${PYQT_MODULE} ; \
+	${MAKE} -C ./build)
+.    endif  # !target(do-build)
+
+.    if !target(do-install)
+do-install:
+	(cd ${WRKSRC} ; ${MAKE} -C ./build install INSTALL_ROOT=${STAGEDIR} )
+.    endif  # !target(do-install)
+
 .  endif  # defined(PYQT_DIST)
 
 # Set build, run and test depends -- we need to prefix them internally with "py-"
