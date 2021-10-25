@@ -223,22 +223,16 @@ PKGNAMEPREFIX=	${PYQT_PY_RELNAME}-
 DISTNAME=	${PYQT_DISTNAME}
 DISTINFO_FILE=	${PYQT_DISTINFO_FILE}
 LICENSE?=	${PYQT_LICENSE}
-HAS_CONFIGURE=	yes
 
 .    if ${_PYQT_VERSION} > 4
-# PyQt5's configure.py generates .pro files and calls qmake to generate the
-# Makefiles. qmake's Makefiles use INSTALL_ROOT instead of DESTDIR.
-DESTDIRNAME=	INSTALL_ROOT
 # Limit PyQt5's version to the Qt5 version in ports
 PORTSCOUT?=	limit:^${_QT_VERSION:R}
 .    endif
 
-PATCHDIR=	${.CURDIR}/../../devel/${PYQT_RELNAME}-core/files
-
-.    if !target(do-configure)
-do-configure:
+.    if !target(post-patch)
+post-patch:
 	${REINPLACE_CMD} -e "s/sip-module/sip-module-${PYTHON_VER}/" ${WRKSRC}/configure.py
-.    endif  # !target(do-configure)
+.    endif  # !target(post-patch)
 
 .    if !target(do-build)
 do-build:
@@ -249,9 +243,8 @@ do-build:
 		--no-make \
 		--build-dir build \
 		--confirm-license \
-		--api-dir ${PYQT_APIDIR} \
-		${PYQT5_MODULES_ALL:N${PYQT_MODULE}:C/.*/--disable &/} \
-		--enable ${PYQT_MODULE} ; \
+		--protected-is-public \
+		--api-dir ${PYQT_APIDIR} ;\
 	${MAKE} -C ./build)
 .    endif  # !target(do-build)
 
