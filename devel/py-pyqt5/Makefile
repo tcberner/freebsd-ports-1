@@ -17,7 +17,8 @@ USE_QT=		${_USE_QT_ALL:Nphonon4}
 .include <bsd.port.pre.mk>
 
 PLIST_SUB+=	PYTHON_MAJOR_VER="${PYTHON_MAJOR_VER}"
-post-patch:
+
+post-extract:
 	${RM} -r ${WRKSRC}/pyuic/uic/port_v2
 
 post-install:
