@@ -57,6 +57,7 @@ MASTER_SITES_PYQTSIP=	https://pypi.python.org/packages/source/P/PyQt5-sip/
 MASTER_SITES_PYQTCHART=	https://pypi.python.org/packages/source/P/PyQtChart/
 MASTER_SITES_PYQTNETWORKAUTH=	https://pypi.python.org/packages/source/P/PyQtNetworkAuth/
 MASTER_SITES_PYQTBUILDER=	https://pypi.io/packages/source/P/PyQt-builder/
+MASTER_SITES_PYQTWEBENGINE=	https://pypi.python.org/packages/source/P/PyQtWebEngine/
 #https://www.riverbankcomputing.com/static/Downloads/QScintilla/2.12.0/QScintilla_src-2.12.0.tar.gz
 MASTER_SITES_QSCI2=	RIVERBANK/QScintilla/${PORTVERSION} \
 			SF/pyqt/QScintilla2/QScintilla-${PORTVERSION} \
@@ -74,6 +75,7 @@ PYQTSIP_DISTNAME=	PyQt5_sip-${PYQTSIP_VERSION}
 PYQTCHART_DISTNAME=	PyQtChart-${PYQT_VERSION}
 PYQTNETWORKAUTH_DISTNAME=	PyQtNetworkAuth-${PYQT_VERSION}
 PYQTBUILDER_DISTNAME=	PyQt-builder-${PYQTBUILDER_VERSION}
+PYQTWEBENGINE_DISTNAME=	PyQtWebEngine-${PYQT_VERSION}
 PYQT5_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 QSCI2_DISTNAME=		QScintilla_src-${QSCI2_VERSION}
 PYQT5_LICENSE=		GPLv3
