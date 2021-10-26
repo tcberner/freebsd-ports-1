@@ -1444,8 +1444,6 @@
     SUBDIR += py-pytoml
     SUBDIR += py-pyx12
     SUBDIR += py-qrcode
-    SUBDIR += py-qt5-xml
-    SUBDIR += py-qt5-xmlpatterns
     SUBDIR += py-rdflib
     SUBDIR += py-readchar
     SUBDIR += py-recommonmark
