@@ -32,7 +32,7 @@ LIB_DEPENDS=	libArcus.so:net/libarcus \
 
 USES=		cmake gettext shebangfix python:3.5+ pyqt:5 \
 		desktop-file-utils shared-mime-info
-USE_PYQT=	gui widgets qml
+USE_PYQT=	pyqt5
 CMAKE_ARGS+=	-DURANIUM_SCRIPTS_DIR:STRING="${LOCALBASE}/share/uranium/scripts" \
 	-DCURA_VERSION=${DISTVERSION}
 USE_GITHUB=	yes
