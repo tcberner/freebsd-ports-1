@@ -1,6 +1,4 @@
-bin/pylupdate5
-bin/pyrcc5
-bin/pyuic5
+%%PYQT_APIDIR%%/PyQt5.api
 %%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/INSTALLER
 %%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/METADATA
 %%PYTHON_SITELIBDIR%%/PyQt5-%%PYQT_PYQTVERSION%%.dist-info/RECORD
@@ -20,8 +18,8 @@ bin/pyuic5
 %%PYTHON_SITELIBDIR%%/PyQt5/QtPositioning.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtPrintSupport.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtQml.abi%%PYTHON_MAJOR_VER%%.so
-%%PYTHON_SITELIBDIR%%/PyQt5/QtQuick.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtQuick%%PYTHON_MAJOR_VER%%D.abi%%PYTHON_MAJOR_VER%%.so
+%%PYTHON_SITELIBDIR%%/PyQt5/QtQuick.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtQuickWidgets.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtRemoteObjects.abi%%PYTHON_MAJOR_VER%%.so
 %%PYTHON_SITELIBDIR%%/PyQt5/QtSensors.abi%%PYTHON_MAJOR_VER%%.so
@@ -342,8 +340,8 @@ bin/pyuic5
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qtouchdevice.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qtransform.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qvalidator.sip
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qvector2d.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qvector%%PYTHON_MAJOR_VER%%d.sip
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qvector2d.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qvector4d.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qwindow.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtGui/qwindowdefs.sip
@@ -600,6 +598,11 @@ bin/pyuic5
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQml/qqmlpropertymap.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQml/qqmlpropertyvaluesource.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQml/qqmlscriptstring.sip
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/QtQuick%%PYTHON_MAJOR_VER%%D.toml
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/QtQuick%%PYTHON_MAJOR_VER%%Dmod.sip
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%d.sip
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%dgeometry.sip
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%dobject.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/QtQuick.toml
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/QtQuickmod.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/qquickframebufferobject.sip
@@ -628,11 +631,6 @@ bin/pyuic5
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/qsgtexturematerial.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/qsgtextureprovider.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick/qsgvertexcolormaterial.sip
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/QtQuick%%PYTHON_MAJOR_VER%%D.toml
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/QtQuick%%PYTHON_MAJOR_VER%%Dmod.sip
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%d.sip
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%dgeometry.sip
-%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuick%%PYTHON_MAJOR_VER%%D/qquick%%PYTHON_MAJOR_VER%%dobject.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuickWidgets/QtQuickWidgets.toml
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuickWidgets/QtQuickWidgetsmod.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtQuickWidgets/qquickwidget.sip
@@ -978,4 +976,6 @@ bin/pyuic5
 %%PYTHON_SITELIBDIR%%/PyQt5/uic/widget-plugins/qtwebkit.py
 %%QT_PLUGINDIR%%/PyQt5/libpyqt5qmlplugin.so
 %%QT_PLUGINDIR%%/designer/libpyqt5.so
-%%PYQT_APIDIR%%/PyQt5.api
+bin/pylupdate5
+bin/pyrcc5
+bin/pyuic5

@@ -1,6 +1,10 @@
 PORTNAME=	pyqt
+PORTVERSION=	${PYQT5_VERSION}
 PORTREVISION=	3
 CATEGORIES=	devel python
+MASTER_SITES=	${MASTER_SITES_PYQT5}
+PKGNAMEPREFIX=	${PYQT_PY_RELNAME}-
+DISTNAME=	${PYQT5_DISTNAME}
 
 MAINTAINER=	kde@FreeBSD.org
 COMMENT=	Python bindings for the Qt5 toolkit, QtCore module
@@ -14,12 +18,22 @@ USE_PYTHON=	concurrent flavors py3kplist
 USE_PYQT=	qtbuilder sip pysip
 USE_QT=		${_USE_QT_ALL:Nphonon4}
 
-.include <bsd.port.pre.mk>
-
-PLIST_SUB+=	PYTHON_MAJOR_VER="${PYTHON_MAJOR_VER}"
+PORTSCOUT?=	limit:^${_QT_VERSION:R}
 
 post-extract:
 	${RM} -r ${WRKSRC}/pyuic/uic/port_v2
+
+do-build:
+	(cd ${WRKSRC} ; \
+	${SIP} \
+		--qmake ${QMAKE} \
+		--verbose \
+		--no-make \
+		--build-dir build \
+		--protected-is-public \
+		--confirm-license \
+		--api-dir ${PYQT_APIDIR} ;\
+	${MAKE} -C ./build)
 
 post-install:
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
@@ -31,4 +45,4 @@ post-install:
 	@${FIND} ${STAGEDIR}${PYTHONPREFIX_SITELIBDIR}/PyQt5 \
 		-name '*.so*' -exec ${STRIP_CMD} {} +
 
-.include <bsd.port.post.mk>
+.include <bsd.port.mk>
