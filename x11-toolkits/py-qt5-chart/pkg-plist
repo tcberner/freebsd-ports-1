@@ -52,3 +52,7 @@
 %%PYQT_SIPDIR%%/QtChart/qxylegendmarker.sip
 %%PYQT_SIPDIR%%/QtChart/qxyseries.sip
 %%PYTHON_SITELIBDIR%%/PyQt5/QtChart.abi%%PYTHON_MAJOR_VER%%.so
+%%PYTHON_SITELIBDIR%%/PyQt5/bindings/QtChart/QtChart.toml
+%%PYTHON_SITELIBDIR%%/PyQtChart-%%PYQT_PYQTVERSION%%.dist-info/INSTALLER
+%%PYTHON_SITELIBDIR%%/PyQtChart-%%PYQT_PYQTVERSION%%.dist-info/METADATA
+%%PYTHON_SITELIBDIR%%/PyQtChart-%%PYQT_PYQTVERSION%%.dist-info/RECORD
