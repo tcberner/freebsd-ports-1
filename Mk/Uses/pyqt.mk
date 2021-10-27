@@ -80,7 +80,7 @@ PYQT5_DISTINFO_FILE=	${.CURDIR:H:H}/devel/${PYQT_RELNAME}/distinfo
 QSCI2_DISTNAME=		QScintilla_src-${QSCI2_VERSION}
 PYQT5_LICENSE=		GPLv3
 
-_USE_PYQT_ALL=		pyqt5 chart networkauth
+_USE_PYQT_ALL=		pyqt5 chart networkauth webengine
 _USE_SIP_ALL=		sip pysip
 _USE_QSCINTILLA=	qscintilla2
 _USE_PYQTBUILDER=	qtbuilder
@@ -102,6 +102,7 @@ py-qtbuilder_PATH=		${PYTHON_PKGNAMEPREFIX}qtbuilder>=${PYQTBUILDER_VERSION}
 py-pyqt5_PATH=			${PYQT_PY_RELNAME}-pyqt>=${PYQT5_VERSION}
 py-chart_PATH=			${PYQT_PY_RELNAME}-chart>=${PYQT5_VERSION}
 py-networkauth_PATH=		${PYQT_PY_RELNAME}-networkauth>=${PYQT5_VERSION}
+py-webengine_PATH=		${PYQT_PY_RELNAME}-webengine>=${PYQT5_VERSION}
 
 # PORT
 py-sip_PORT=			devel/py-sip
@@ -111,7 +112,7 @@ py-qscintilla2_PORT=		devel/${PYQT_RELNAME}-qscintilla2
 py-positioning_PORT=		devel/${PYQT_RELNAME}-positioning
 py-pyqt5_PORT=			devel/${PYQT_RELNAME}-pyqt
 py-chart_PORT=			x11-toolkits/${PYQT_RELNAME}-chart
-py-networkauth_PORT=		net/${PYQT_RELNAME}-networkauth
+py-webengine_PORT=		www/${PYQT_RELNAME}-webengine
 
 # The versionned executable of sip
 SIP=		${LOCALBASE}/bin/sip-build-${PYTHON_VER}
