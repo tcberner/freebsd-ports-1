@@ -19,7 +19,6 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}zeroconf>0:net/py-zeroconf@${PY_FLAVOR} \
 		qt5-graphicaleffects>0:graphics/qt5-graphicaleffects \
 		qt5-quickcontrols>0:x11-toolkits/qt5-quickcontrols \
 		qt5-quickcontrols2>0:x11-toolkits/qt5-quickcontrols2 \
-		${PYTHON_PKGNAMEPREFIX}qt5-svg>0:graphics/py-qt5-svg \
 		Uranium>=${DISTVERSION}:cad/uranium \
 		libCharon>=${DISTVERSION}:net/libcharon \
 		CuraEngine>=${DISTVERSION}:cad/cura-engine \
