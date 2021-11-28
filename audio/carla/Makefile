@@ -17,7 +17,7 @@ RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}pyliblo>0:audio/py-pyliblo@${PY_FLAVOR}
 USES=		compiler:c++11-lib desktop-file-utils gl gmake gnome localbase \
 		pkgconfig pyqt:5 python:3.4+ qt:5 shared-mime-info shebangfix \
 		tar:bz2 xorg
-USE_PYQT=	pyqt5_run sip
+USE_PYQT=	pyqt5 sip
 USE_GNOME=	gtk20 gtk30
 USE_QT=		core gui widgets buildtools_build
 USE_GL=		gl
