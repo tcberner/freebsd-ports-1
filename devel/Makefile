@@ -5244,6 +5244,7 @@
     SUBDIR += py-simpletal
     SUBDIR += py-simpy
     SUBDIR += py-sip
+    SUBDIR += py-sip4
     SUBDIR += py-six
     SUBDIR += py-smmap
     SUBDIR += py-smmap2
