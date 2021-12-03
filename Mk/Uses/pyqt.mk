@@ -112,6 +112,7 @@ py-qscintilla2_PORT=		devel/${PYQT_RELNAME}-qscintilla2
 py-positioning_PORT=		devel/${PYQT_RELNAME}-positioning
 py-pyqt5_PORT=			devel/${PYQT_RELNAME}-pyqt
 py-chart_PORT=			x11-toolkits/${PYQT_RELNAME}-chart
+py-networkauth_PORT=		net/${PYQT_RELNAME}-networkauth
 py-webengine_PORT=		www/${PYQT_RELNAME}-webengine
 
 # The versionned executable of sip
