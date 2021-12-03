@@ -23,18 +23,6 @@ PORTSCOUT?=	limit:^${_QT_VERSION:R}
 post-extract:
 	${RM} -r ${WRKSRC}/pyuic/uic/port_v2
 
-do-build:
-	(cd ${WRKSRC} ; \
-	${SIP} \
-		--qmake ${QMAKE} \
-		--verbose \
-		--no-make \
-		--build-dir build \
-		--protected-is-public \
-		--confirm-license \
-		--api-dir ${PYQT_APIDIR} ;\
-	${MAKE} -C ./build)
-
 post-install:
 	${PYTHON_CMD} ${PYTHON_LIBDIR}/compileall.py \
 		-f -d ${PYTHONPREFIX_SITELIBDIR}/PyQt5 \

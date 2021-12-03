@@ -147,6 +147,16 @@ PLIST_SUB+=	PYQT_APIDIR=${_APIDIR_REL} \
 
 .  if defined(PYQT_DIST)
 
+SIP_ARGS=	--qmake ${QMAKE} \
+		--verbose \
+		--no-make \
+		--build-dir build \
+		--protected-is-public \
+		--api-dir ${PYQT_APIDIR}
+.	if ${PORTNAME} == "pyqt"
+SIP_ARGS+=	--confirm-license
+.	endif
+
 .    if !target(post-patch)
 post-patch:
 	${REINPLACE_CMD} -e "s/sip-module/sip-module-${PYTHON_VER}/" ${WRKSRC}/configure.py
@@ -154,15 +164,8 @@ post-patch:
 
 .    if !target(do-build)
 do-build:
-	(cd ${WRKSRC} ; \
-	${SIP} \
-		--qmake ${QMAKE} \
-		--verbose \
-		--no-make \
-		--build-dir build \
-		--protected-is-public \
-		--api-dir ${PYQT_APIDIR} ;\
-	${MAKE} -C ./build)
+	(cd ${WRKSRC}; ${SIP} ${SIP_ARGS}; ${MAKE} -C ./build)
+
 .    endif  # !target(do-build)
 
 .    if !target(do-install)
