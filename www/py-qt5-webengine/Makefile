@@ -18,7 +18,7 @@ EXPIRATION_DATE=2021-06-23
 
 LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 
-USES=		gl python:3.5+ pyqt:5 qt:5
+USES=		gl python:3.8+ pyqt:5 qt:5
 USE_GL=		gl
 USE_PYQT=	sip_build pyqt5
 USE_PYTHON=	concurrent flavors py3kplist

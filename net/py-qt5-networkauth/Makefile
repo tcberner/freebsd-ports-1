@@ -13,7 +13,7 @@ COMMENT=	Python bindings for the Qt5 toolkit, QtNetworkAuth module
 
 LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 
-USES=		gl pyqt:5 python:3.5+ qt:5
+USES=		gl pyqt:5 python:3.8+ qt:5
 USE_GL=		gl
 USE_PYQT=	sip_build pyqt5
 USE_PYTHON=	concurrent flavors py3kplist

@@ -13,7 +13,7 @@ PYQT_DIST=	yes
 
 LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 
-USES=		python:3.5+ pyqt:5 qt:5
+USES=		python:3.8+ pyqt:5 qt:5
 USE_PYTHON=	concurrent flavors py3kplist
 USE_PYQT=	qtbuilder sip pysip
 USE_QT=		${_USE_QT_ALL:Nphonon4}
