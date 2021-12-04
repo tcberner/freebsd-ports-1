@@ -974,8 +974,8 @@
 %%PYTHON_SITELIBDIR%%/PyQt5/uic/widget-plugins/qtquickwidgets.py
 %%PYTHON_SITELIBDIR%%/PyQt5/uic/widget-plugins/qtwebenginewidgets.py
 %%PYTHON_SITELIBDIR%%/PyQt5/uic/widget-plugins/qtwebkit.py
-%%QT_PLUGINDIR%%/PyQt5/libpyqt5qmlplugin.so
-%%QT_PLUGINDIR%%/designer/libpyqt5.so
+%%PYQT_QMLDIR%%/libpyqt5qmlplugin.so
+%%PYQT_DESIGNERDIR%%/libpyqt5.so
 bin/pylupdate5
 bin/pyrcc5
 bin/pyuic5

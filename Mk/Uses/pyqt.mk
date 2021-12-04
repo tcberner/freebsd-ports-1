@@ -120,7 +120,7 @@ SIP=		${LOCALBASE}/bin/sip-build-${PYTHON_VER}
 
 # Relative directories
 _VERSION_SUBDIR_REL=	PyQt${_PYQT_VERSION}/${PYTHON_VER}
-_APIDIR_REL=	${QT_DATADIR_REL}/qsci/api/python
+_APIDIR_REL=	share/${_VERSION_SUBDIR_REL}/qsci
 _DOCDIR_REL=	share/doc/${_VERSION_SUBDIR_REL}
 _EXAMPLEDIR_REL=	share/examples/${_VERSION_SUBDIR_REL}
 _SIPDIR_REL=		PyQt${_PYQT_VERSION}/bindings
@@ -146,6 +146,8 @@ PLIST_SUB+=	PYQT_APIDIR=${_APIDIR_REL} \
 		PYQT_PYQTVERSION=${PYQT_VERSION}
 
 .  if defined(PYQT_DIST)
+CONFIGURE_ARGS+=--qml-plugindir ${PYQT_QMLDIR} \
+		--designer-plugindir ${PYQT_DESIGNERDIR}
 
 SIP_ARGS=	--qmake ${QMAKE} \
 		--verbose \
@@ -157,10 +159,13 @@ SIP_ARGS=	--qmake ${QMAKE} \
 SIP_ARGS+=	--confirm-license
 .	endif
 
+.  if ${PORTNAME} == "pyqt"
 .    if !target(post-patch)
 post-patch:
-	${REINPLACE_CMD} -e "s/sip-module/sip-module-${PYTHON_VER}/" ${WRKSRC}/configure.py
+	${REINPLACE_CMD} -e "s#%%PYQT_DESIGNERDIR%%#${PYQT_DESIGNERDIR}#" ${WRKSRC}/project.py
+	${REINPLACE_CMD} -e "s#%%PYQT_QMLDIR%%#${PYQT_QMLDIR}#" ${WRKSRC}/project.py
 .    endif  # !target(post-patch)
+.  endif
 
 .    if !target(do-build)
 do-build:
