@@ -15,7 +15,6 @@ LIB_DEPENDS=	libpugixml.so:textproc/pugixml
 USES=		cmake compiler:c++11-lang python:3.5+ pyqt:5
 USE_GITHUB=	yes
 GH_ACCOUNT=	Ultimaker
-GH_TAGNAME=	eb41cb05d0f4
 USE_LDCONFIG=	yes
 CFLAGS+=	"-I${LOCALBASE}/include"
 LDFLAGS+=	"-L${LOCALBASE}/lib"
