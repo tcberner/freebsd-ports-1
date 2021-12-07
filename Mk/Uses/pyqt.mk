@@ -151,8 +151,8 @@ PLIST_SUB+=	PYQT_APIDIR=${_APIDIR_REL} \
 		PYQT_PYQTVERSION=${PYQT_VERSION}
 
 .  if defined(PYQT_DIST)
-CONFIGURE_ARGS+=--qml-plugindir ${PYQT_QMLDIR} \
-		--designer-plugindir ${PYQT_DESIGNERDIR}
+
+PLIST_SUB+=	PYTHON_MAJOR_VER="${PYTHON_MAJOR_VER}"
 
 SIP_ARGS=	--qmake ${QMAKE} \
 		--verbose \
@@ -210,7 +210,5 @@ TEST_DEPENDS+=		${py-${comp}_TEST_DEPENDS}
 IGNORE?=	cannot be installed: unknown USE_PYQT component ${comp} #'
 .    endif
 .  endfor
-
-PLIST_SUB+=	PYTHON_MAJOR_VER="${PYTHON_MAJOR_VER}"
 
 .endif # defined(_INCLUDE_USES_PYQT_MK)
