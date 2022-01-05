@@ -14,7 +14,7 @@ LIB_DEPENDS=	libgeos_c.so:graphics/geos \
 		libexpat.so:textproc/expat2 \
 		libspatialite.so:databases/spatialite \
 		libreadosm.so:astro/readosm \
-		libminizip.so:archivers/minizip
+		libminizip.so:archivers/minizip-ng
 
 GNU_CONFIGURE=	yes
 USES=		gmake gnome pkgconfig iconv sqlite
