@@ -17,7 +17,7 @@ BUILD_DEPENDS=	boost-libs>=1.44.0:devel/boost-libs \
 LIB_DEPENDS=	libboost_thread.so:devel/boost-libs \
 		libexpat.so:textproc/expat2 \
 		libgtest.so:devel/googletest \
-		libminizip.so:archivers/minizip \
+		libminizip.so:archivers/minizip-ng \
 		liburiparser.so:net/uriparser
 
 OPTIONS_DEFINE=	EXAMPLES
