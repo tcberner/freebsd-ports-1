@@ -300,7 +300,7 @@ SIDPLAY_CONFIGURE_ENABLE=	sid
 CONFIGURE_ARGS+=	--disable-sid
 
 SKINS_USE=		XORG=xext,xinerama,xpm
-SKINS_LIB_DEPENDS=	libminizip.so:archivers/minizip \
+SKINS_LIB_DEPENDS=	libminizip.so:archivers/minizip-ng \
 			libtar.so:devel/libtar
 SKINS_CONFIGURE_ENABLE=	skins2 libtar
 SKINS_IMPLIES=		QT5
