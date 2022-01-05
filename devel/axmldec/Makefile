@@ -12,7 +12,7 @@ COMMENT=	Stand-alone binary AndroidManifest.xml decoder
 LICENSE=	ISCL
 LICENSE_FILE=	${WRKSRC}/LICENSE.md
 
-LIB_DEPENDS=	libminizip.so:archivers/minizip \
+LIB_DEPENDS=	libminizip.so:archivers/minizip-ng \
 		libboost_system.so:devel/boost-libs
 
 USES=		cmake compiler:c++14-lang cpe pkgconfig
