@@ -1,0 +1,11 @@
+--- unzip/Makefile.orig	2006-02-21 01:28:36 UTC
++++ unzip/Makefile
+@@ -3,7 +3,7 @@
+ #  Unix-like systems
+ #
+ 
+-CC=gcc
++CC=`${WX_CONFIG} --cc`
+ CFLAGS=-Os
+ 
+ ##########################

@@ -4,7 +4,7 @@
 -CC = `wx-config --cxx`
 -LDFLAGS = `wx-config --libs` -Lunrar -lunrar -Lunzip -lminiunzip
 +CC = ${CXX}
-+LDFLAGS += `${WX_CONFIG} --libs` -L${LOCALBASE}/lib -lunrar -lminizip -lz
++LDFLAGS += `${WX_CONFIG} --libs` -L${LOCALBASE}/lib -Lunrar -lunrar -Lunzip -lminiunzip -lz
  INSTALL = install
  INSTALL_PROGRAM = $(INSTALL)
 -prefix = /usr/local
@@ -12,12 +12,3 @@
  exec_prefix = $(prefix)
  bindir = $(exec_prefix)/bin
  
-@@ -12,7 +12,7 @@ OBJS = $(patsubst %.cpp,%.o,$(wildcard s
- 
- all: comical
- 
--comical: $(OBJS) unrar/libunrar.a unzip/libminiunzip.a
-+comical: $(OBJS)
- 	$(CC) -o $@ $(OBJS) $(LDFLAGS)
- 
- $(OBJS):

@@ -1,0 +1,11 @@
+--- unrar/makefile.linux.orig	2006-02-11 16:15:09 UTC
++++ unrar/makefile.linux
+@@ -6,7 +6,7 @@
+ #
+ 
+ # Linux using GCC
+-CXX=g++
++#CXX=g++
+ CXXFLAGS=-O2 -fPIC
+ DEFINES=-D_FILE_OFFSET_BITS=64 -D_LARGEFILE_SOURCE
+ STRIP=strip
