@@ -1,4 +1,4 @@
---- CMakeLists.txt.orig	2019-05-09 19:44:01 UTC
+--- CMakeLists.txt.orig	2022-01-05 17:23:18 UTC
 +++ CMakeLists.txt
 @@ -2,6 +2,8 @@ cmake_minimum_required (VERSION 2.6.0)
  project (collada-dom)
@@ -18,3 +18,13 @@
  
  set(COLLADA_DOM_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/dom/include)
  set(COLLADA_DOM_LINK_DIRS "")
+@@ -220,7 +222,8 @@ else()
+   endif()
+ endif()
+ 
+-pkg_check_modules(minizip minizip)
++# make sure we dont pickup minizip from ports as its not the same
++#pkg_check_modules(minizip minizip)
+ if(minizip_FOUND)
+   set(MINIZIP_INCLUDE_DIR ${minizip_INCLUDE_DIRS})
+ else()
