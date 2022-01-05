@@ -22,7 +22,7 @@ LIB_DEPENDS=	libbiblesync.so:misc/biblesync \
 		libdbus-glib-1.so:devel/dbus-glib \
 		libenchant.so:textproc/enchant \
 		libicui18n.so:devel/icu \
-		libminizip.so:archivers/minizip \
+		libminizip.so:archivers/minizip-ng \
 		libsoup-2.4.so:devel/libsoup \
 		libsword.so:misc/sword \
 		libuuid.so:misc/e2fsprogs-libuuid \
