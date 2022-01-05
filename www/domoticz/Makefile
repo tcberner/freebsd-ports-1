@@ -10,7 +10,7 @@ LICENSE=	GPLv3
 LICENSE_FILE=	${WRKSRC}/License.txt
 
 LIB_DEPENDS=	libcurl.so:ftp/curl libboost_system.so:devel/boost-libs \
-		libminizip.so:archivers/minizip libjsoncpp.so:devel/jsoncpp
+		libminizip.so:archivers/minizip-ng libjsoncpp.so:devel/jsoncpp
 BUILD_DEPENDS=	cereal>=1.2.2:devel/cereal
 
 USES=		cmake compiler:c++11-lang cpe pkgconfig ssl lua:53 sqlite
