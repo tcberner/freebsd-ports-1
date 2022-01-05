@@ -1,0 +1,12 @@
+--- CMakeLists.txt.orig	2022-01-05 17:18:53 UTC
++++ CMakeLists.txt
+@@ -91,7 +91,8 @@ if (USE_SYSTEM_LIBS)
+     MESSAGE(STATUS "Trying to use System Libraries...")
+     find_package( ZLIB )
+     find_package( PkgConfig )
+-    find_package( MiniZip )
++# make sure we dont pickup minizip from ports as its not the same
++#    find_package( MiniZip )
+     pkg_check_modules( HUNSPELL hunspell )
+     if ( NOT APPLE )
+         pkg_check_modules( PCRE libpcre16 )
