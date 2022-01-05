@@ -11,7 +11,7 @@ COMMENT=	Qt-based Jabber (XMPP) client
 LICENSE=	GPLv2+
 
 LIB_DEPENDS=	libidn.so:dns/libidn \
-		libminizip.so:archivers/minizip
+		libminizip.so:archivers/minizip-ng
 
 USES=		cmake compiler:c++11-lang desktop-file-utils pkgconfig \
 		qca qt:5 tar:xz xorg

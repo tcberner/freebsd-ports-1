@@ -1,0 +1,12 @@
+--- src/libpsi/tools/zip/CMakeLists.txt.orig	2022-01-05 17:32:17 UTC
++++ src/libpsi/tools/zip/CMakeLists.txt
+@@ -11,7 +11,8 @@ find_package(ZLIB REQUIRED)
+ 
+ include_directories(${ZLIB_INCLUDE_DIRS})
+ 
+-find_package(MINIZIP QUIET)
++# make sure we dont pickup minizip from ports as its not the same
++#find_package(MINIZIP QUIET)
+ 
+ set(DEPLIBS
+ 	${ZLIB_LIBRARIES}
