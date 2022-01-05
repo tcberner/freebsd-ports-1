@@ -15,7 +15,7 @@ LICENSE_FILE=	${WRKSRC}/COPYING
 LIB_DEPENDS=	libgeos_c.so:graphics/geos \
 		libproj.so:graphics/proj \
 		libfreexl.so:textproc/freexl \
-		libminizip.so:archivers/minizip \
+		libminizip.so:archivers/minizip-ng \
 		librttopo.so:devel/librttopo
 
 GNU_CONFIGURE=	yes
