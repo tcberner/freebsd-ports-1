@@ -9,13 +9,13 @@ COMMENT=	Library to import various 3D model formats in a uniform manner
 LICENSE=	BSD3CLAUSE
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libminizip.so:archivers/minizip
-
 USES=		cmake:testing compiler:c++11-lib localbase:ldflags pkgconfig
 
 USE_GITHUB=	yes
 USE_LDCONFIG=	yes
 
+# make sure we dont pickup minizip from ports as its not the same
+CMAKE_ON=		ASSIMP_BUILD_MINIZIP
 CMAKE_OFF=		ASSIMP_BUILD_TESTS
 CMAKE_TESTING_ON=	ASSIMP_BUILD_TESTS
 
