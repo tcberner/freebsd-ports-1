@@ -12,7 +12,7 @@ COMMENT=	8 players Bomberman clone
 LICENSE=	MIT
 LICENSE_FILE=	${WRKSRC}/LICENSE
 
-LIB_DEPENDS=	libminizip.so:archivers/minizip \
+LIB_DEPENDS=	libminizip.so:archivers/minizip-ng \
 		libmodplug.so:audio/libmodplug
 
 USES=		compiler:c++11-lang gmake sdl
