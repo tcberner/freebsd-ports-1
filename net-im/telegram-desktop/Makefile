@@ -31,7 +31,6 @@ LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
 		libhunspell-1.7.so:textproc/hunspell \
 		libjpeg.so:graphics/jpeg-turbo \
 		liblz4.so:archivers/liblz4 \
-		libminizip.so:archivers/minizip \
 		librnnoise.so:audio/rnnoise \
 		libopenal.so:audio/openal-soft \
 		libopenh264.so:multimedia/openh264 \
@@ -45,7 +44,7 @@ LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
 		libvpx.so:multimedia/libvpx
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gl \
-		gnome pkgconfig python:3.7+,build qt:5 ssl xorg
+		gnome minizip:ng pkgconfig python:3.7+,build qt:5 ssl xorg
 
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	telegramdesktop
