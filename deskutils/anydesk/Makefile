@@ -19,7 +19,7 @@ LIB_DEPENDS=	libfontconfig.so:x11-fonts/fontconfig \
 		libinotify.so:devel/libinotify \
 		libpolkit-gobject-1.so:sysutils/polkit \
 		libxkbfile.so:x11/libxkbfile \
-		libminizip.so:archivers/minizip \
+		libminizip.so:archivers/minizip-ng
 
 USES=		cpe gl gnome xorg
 
