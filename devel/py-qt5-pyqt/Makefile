@@ -16,10 +16,10 @@ LIB_DEPENDS=	libqscintilla2_qt5.so:devel/qscintilla2-qt5
 USES=		python:3.8+ pyqt:5 qt:5
 USE_PYTHON=	concurrent flavors py3kplist
 USE_PYQT=	qtbuilder sip pysip
-USE_QT=		core dbus declarative designer gui help imageformats location \
+USE_QT=		connectivity core dbus declarative designer gui help imageformats location \
 		multimedia network opengl printsupport quick3d remoteobjects \
 		sensors serialport sql svg testlib webchannel webkit websockets \
-		widgets xml xmlpatterns \
+		widgets x11extras xml xmlpatterns \
 		buildtools_build qmake_build
 
 PORTSCOUT?=	limit:^${_QT_VERSION:R}
