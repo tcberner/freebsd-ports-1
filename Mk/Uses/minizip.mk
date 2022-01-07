@@ -3,7 +3,7 @@
 # Feature:	minizip
 # Usage:	USES=minizip[:ng]
 #
-# MAINTAINER: portmgr@FreeBSD.org
+# MAINTAINER: lbartoletti@FreeBSD.org
 
 .if !defined(_INCLUDE_USES_MINIZIP_MK)
 _INCLUDE_USES_MINIZIP_MK=	yes
