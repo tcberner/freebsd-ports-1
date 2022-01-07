@@ -1,5 +1,5 @@
 PORTNAME=	zlib-ng
-PORTVERSION=	2.0.6
+DISTVERSION=	2.0.6
 CATEGORIES=	archivers
 
 MAINTAINER=	lbartoletti@FreeBSD.org
