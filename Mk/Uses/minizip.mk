@@ -8,12 +8,12 @@
 .if !defined(_INCLUDE_USES_MINIZIP_MK)
 _INCLUDE_USES_MINIZIP_MK=	yes
 
-.if empty(minizip_ARGS)
+.  if empty(minizip_ARGS)
 LIB_DEPENDS+=		libminizip.so:archivers/minizip
-.elif ${minizip_ARGS} == "ng"
+.  elif ${minizip_ARGS} == "ng"
 LIB_DEPENDS+=		libminizip-ng.so:archivers/minizip-ng
-.else
+.  else
 IGNORE=	Incorrect 'USES+=minizip:${minizip_ARGS}' expecting 'USES+=minizip[:ng]'
-.endif
+.  endif
 
 .endif
