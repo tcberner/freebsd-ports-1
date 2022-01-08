@@ -18,7 +18,7 @@ BUILD_DEPENDS=		zip:archivers/zip \
 LIB_DEPENDS=		libespeak.so:audio/espeak \
 			libnspr4.so:devel/nspr \
 			libvorbisfile.so:audio/libvorbis \
-			libpng.so:graphics/png \
+			libpng.so:graphics/png
 
 USES=			gl gnustep openal:al minizip perl5 python:3.5+,build sdl \
 			tar:bzip2 xorg
