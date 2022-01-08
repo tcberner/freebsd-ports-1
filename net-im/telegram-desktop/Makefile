@@ -44,7 +44,7 @@ LIB_DEPENDS=	libavformat.so:multimedia/ffmpeg \
 		libvpx.so:multimedia/libvpx
 
 USES=		cmake compiler:c++17-lang desktop-file-utils gl \
-		gnome minizip:ng pkgconfig python:3.7+,build qt:5 ssl xorg
+		gnome pkgconfig python:3.7+,build qt:5 ssl xorg
 
 USE_GITHUB=	nodefault
 GH_ACCOUNT=	telegramdesktop
