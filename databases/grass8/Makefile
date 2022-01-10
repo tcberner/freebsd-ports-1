@@ -1,5 +1,3 @@
-# Created by: Mikael URANKAR and Loïc BARTOLETTI
-
 PORTNAME=	grass
 DISTVERSION=	8.0.0
 DISTVERSIONSUFFIX=	RC1
@@ -18,29 +16,33 @@ MASTER_SITES=	https://grass.osgeo.org/%SUBDIR%/ \
 MASTER_SITE_SUBDIR=	grass${VER}/source
 PKGNAMESUFFIX=	8
 
+PATCH_SITES=	https://github.com/osgeo/${PORTNAME}/commit/
+PATCHFILES=	fbbf6c01ac97.patch:-p1 # https://github.com/OSGeo/grass/pull/2075 fix g.extension
+
 MAINTAINER=	lbartoletti@FreeBSD.org
 COMMENT=	Open source Geographical Information System (GIS)
 
 LICENSE=	GPLv2+
 LICENSE_FILE=	${WRKSRC}/GPL.TXT
 
-BROKEN_sparc64=	Does not configure on sparc64
-
 BUILD_DEPENDS=	${PY_NUMPY} \
-		${PYTHON_SITELIBDIR}/six.py:devel/py-six@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR}
 LIB_DEPENDS=	libgdal.so:graphics/gdal \
 		libpng.so:graphics/png \
 		libproj.so:graphics/proj \
 		libtiff.so:graphics/tiff \
+		libgeotiff.so:graphics/libgeotiff \
 		libfftw3.so:math/fftw3 \
 		libfontconfig.so:x11-fonts/fontconfig \
 		libfreetype.so:print/freetype2 \
-		libgeos.so:graphics/geos
+		libgeos.so:graphics/geos \
+		libzstd.so:archivers/zstd
 RUN_DEPENDS=	${PY_NUMPY} \
-		${PYTHON_SITELIBDIR}/six.py:devel/py-six@${PY_FLAVOR}
+		${PYTHON_PKGNAMEPREFIX}six>0:devel/py-six@${PY_FLAVOR} \
+		${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
 
 USES=		blaslapack compiler:c11 gl gmake gnome iconv \
-		jpeg perl5 pkgconfig python:3.6+ readline shebangfix xorg
+		jpeg perl5 pkgconfig python:3.6+ readline shebangfix sqlite xorg
 SHEBANG_GLOB=	*.py
 SHEBANG_LANG=	nviz
 nviz_OLD_CMD=	nviz
@@ -77,7 +79,6 @@ CONFIGURE_ARGS=	--with-includes=${LOCALBASE}/include \
 
 CFLAGS+=	-std=c11
 
-SUB_FILES=	pkg-message
 SUB_LIST=	PYTHON_CMD=${PYTHON_CMD}
 BINARY_ALIAS=	python3=${PYTHON_CMD}
 ALL_TARGET=	default
@@ -89,29 +90,14 @@ PLIST_SUB=	GRASS_INST_DIR="${GRASS_INST_DIR}" \
 		VERSION="${PORTVERSION}" VERS="${PORTVERSION:C/([0-9]+).([0-9]+)(.*)/\1.\2/}" \
 		VER="${VER}" MAJVER="${PKGNAMESUFFIX}"
 
-OPTIONS_DEFINE=		LAS NETCDF NLS PDAL ZSTD
+OPTIONS_DEFINE=		NETCDF NLS PDAL
 OPTIONS_MULTI=		DB
-OPTIONS_MULTI_DB=	MYSQL ODBC PGSQL SQLITE
-#OPTIONS_SINGLE=		BLAS
-#OPTIONS_SINGLE_BLAS=	ATLAS NETLIB GOTOBLAS OPENBLAS
-OPTIONS_DEFAULT=	LAS NETCDF NLS PDAL PGSQL SQLITE ZSTD
+OPTIONS_MULTI_DB=	MYSQL ODBC PGSQL
+OPTIONS_DEFAULT=	NETCDF NLS PDAL PGSQL
 OPTIONS_SUB=		yes
 
-# BLAS/LAPACK: Only netlib compile the maxmimum number of modules
-#BLAS_DESC=		BLAS/LAPACK support
-#GOTOBLAS_DESC=		GotoBLAS implementationS
-#ATLAS_USES=		blaslapack:atlas
-#NETLIB_USES=		blaslapack
-#GOTOBLAS_USES=		blaslapack:gotoblas
-#OPENBLAS_USES=		blaslapack:openblas
-LAS_DESC=		Enable LiDAR modules
 PDAL_DESC=		Enable points cloud data modules
 DB_DESC=		Database support
-LAS_CONFIGURE_ON=	--with-liblas=yes
-LAS_LIB_DEPENDS=	liblas.so:devel/liblas \
-			libboost_program_options.so:devel/boost-libs \
-			libboost_thread.so:devel/boost-libs \
-			libgeotiff.so:graphics/libgeotiff
 MYSQL_USES=		mysql
 MYSQL_CONFIGURE_ON=	--with-mysql \
 			--with-mysql-includes=${LOCALBASE}/include/mysql \
@@ -126,11 +112,6 @@ PDAL_CONFIGURE_ON=	--with-pdal=${LOCALBASE}/bin/pdal-config
 PDAL_LIB_DEPENDS=	libpdal_base.so:math/pdal
 PGSQL_USES=		pgsql
 PGSQL_CONFIGURE_WITH=	postgres
-SQLITE_USES=		sqlite
-SQLITE_CONFIGURE_WITH=	sqlite
-SQLITE_RUN_DEPENDS=	${PYTHON_PKGNAMEPREFIX}sqlite3>0:databases/py-sqlite3@${PY_FLAVOR}
-ZSTD_CONFIGURE_WITH=	zstd
-ZSTD_LIB_DEPENDS=	libzstd.so:archivers/zstd
 
 .include <bsd.port.pre.mk>
 
@@ -143,43 +124,17 @@ MANDIRS=	${PREFIX}/grass${VER}/docs/man/man1
 post-patch:
 	${REINPLACE_CMD} \
 		's|= python3|= ${PYTHON_CMD:T}|' ${WRKSRC}/include/Make/Platform.make.in
-	${REINPLACE_CMD} -e \
-		"s|'make'|'gmake'|g; \
-		 s|gcc|${CC}|" ${WRKSRC}/scripts/g.extension/g.extension.py
 	${REINPLACE_CMD} \
 		's|$$(ARCH)|$$(TARGET)|g' ${WRKSRC}/include/Make/Grass.make
 # Replace hardcoded python interpreter to PYTHON_CMD
-	${REINPLACE_CMD} "s|'GRASS_PYTHON', 'python'|'GRASS_PYTHON', \'${PYTHON_CMD}\'|g" \
+	${REINPLACE_CMD} 's|"GRASS_PYTHON", "python"|"GRASS_PYTHON", "${PYTHON_CMD}"|g' \
 		${WRKSRC}/scripts/wxpyimgview/wxpyimgview.py
-	${REINPLACE_CMD} 's|GRASS_PYTHON=python|GRASS_PYTHON=${PYTHON_CMD}|g' \
-		${WRKSRC}/lib/init/grass.sh
 	${REINPLACE_CMD} \
-		"s|environ\['GRASS_PYTHON'\] = "'"python3"'"|environ['GRASS_PYTHON'] = "'"${PYTHON_CMD}"'"|g" \
-		${WRKSRC}/lib/python/script/setup.py
+		's|environ\["GRASS_PYTHON"\] = "python3"|environ["GRASS_PYTHON"] = "${PYTHON_CMD}"|g' \
+		${WRKSRC}/python/grass/script/setup.py
 
 post-install:
-# remove useless files
-	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/db.test/
 	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/demolocation/PERMANENT/.tmp/
-	${RM} -rf ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/docs/html/colortables/*bak.png
-
-# fix pkg-plist issues
-# poudriere testport, poudriere bulk -t and make ports can create different pkg-plist
-	for i in `${FIND} ${WRKSRC}/scripts -type f \( -name *jpg -o -name *png -o -name *gxm \)  -print`; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${LOCALBASE}/${PORTNAME}${VER}/docs/html; \
-	done
-	for i in `${FIND} ${WRKSRC}/gui/wxpython -type f \( -name *jpg -o -name *png -o -name *gxm \) -print`; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${LOCALBASE}/${PORTNAME}${VER}/docs/html; \
-	done
-	for i in `${FIND} ${WRKSRC}/raster -type f \( -name *jpg -o -name *png -o -name *gxm \) -print`; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${LOCALBASE}/${PORTNAME}${VER}/docs/html; \
-	done
-	for i in `${FIND} ${WRKSRC}/imagery -type f \( -name *jpg -o -name *png -o -name *gxm \) -print`; do \
-		${INSTALL_DATA} $$i ${STAGEDIR}${LOCALBASE}/${PORTNAME}${VER}/docs/html; \
-	done
-	${INSTALL_SCRIPT} ${WRKSRC}/scripts/wxpyimgview/wxpyimgview_gui.py ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/wxpyimgview_gui.py
-	${MKDIR} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/d.polar
-	${INSTALL_DATA} ${WRKSRC}/scripts/d.polar/ps_defs.eps ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/d.polar
 
 # STRIP PART
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/bin/*
@@ -187,10 +142,10 @@ post-install:
 .for i in clean_temp current_time_s_ms echo i.find lock run r.watershed/seg r.watershed/ram lister/vector lister/cell
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/etc/${i}
 .endfor
-	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/tools/g.echo
 	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/lib/*
+	${STRIP_CMD} ${STAGEDIR}${PREFIX}/${GRASS_INST_DIR}/utils/g.echo
 
-# symlink grass7
-	${LN} -sf ${PORTNAME}${VER} \
+# symlink grass8
+	${LN} -sf ${PORTNAME} \
 		${STAGEDIR}${PREFIX}/bin/${PORTNAME}${PKGNAMESUFFIX}
 .include <bsd.port.post.mk>
