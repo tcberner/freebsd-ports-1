@@ -1,5 +1,6 @@
 bin/lebiniou
 lib/lebiniou/plugins/input/jackaudio/jackaudio.so
+lib/lebiniou/plugins/input/oscaudio/oscaudio.so
 lib/lebiniou/plugins/input/pulseaudio/pulseaudio.so
 lib/lebiniou/plugins/input/random/random.so
 lib/lebiniou/plugins/input/sndfile/sndfile.so
@@ -124,9 +125,9 @@ lib/liblebiniou.so.0
 man/man1/lebiniou.1.gz
 share/applications/net.biniou.LeBiniou.desktop
 share/icons/hicolor/256x256/apps/net.biniou.LeBiniou.png
+share/metainfo/net.biniou.LeBiniou.appdata.xml
+share/pixmaps/lebiniou.xpm
 %%DATADIR%%/etc/schemes.json
 %%DATADIR%%/images/z-biniou-tv-1.png
 %%DATADIR%%/lebiniou.bmp
 %%DATADIR%%/lebiniou.ico
-share/metainfo/net.biniou.LeBiniou.appdata.xml
-share/pixmaps/lebiniou.xpm
