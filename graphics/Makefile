@@ -423,6 +423,7 @@
     SUBDIR += lcms
     SUBDIR += lcms2
     SUBDIR += leafpak
+    SUBDIR += lebiniou
     SUBDIR += lensfun
     SUBDIR += lepton
     SUBDIR += leptonica
